@@ -30,8 +30,7 @@ after_success:
   - >
     [[ $BRANCH = 'production' ]] && REMOTE=production || REMOTE=staging
   - git push -f $REMOTE master
-  - git tag test
-  - git push origin test
+  - cat ~/.ssh/id_rsa.heroku
   - >
     if [[ $REMOTE = 'staging' ]]; then
       BUILD_TAG="build-$BUILD_NUMBER"
