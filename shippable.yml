@@ -31,7 +31,7 @@ after_success:
     [[ $BRANCH = 'production' ]] && REMOTE=production || REMOTE=staging
   - git push -f $REMOTE master
   - >
-    if [[ REMOTE = 'staging' ]]; then
+    if [[ $REMOTE = 'staging' ]]; then
       BUILD_TAG="build-$BUILD_NUMBER"
       git tag $BUILD_TAG
       git push origin $BUILD_TAG
