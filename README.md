@@ -1,5 +1,5 @@
-Sample for multi-environment deployment
-=======================================
+Sample for multiple environments
+================================
 
 This sample demonstrates how to setup continuous integration and deployment of an Express+MongoDB
 project with multiple Heroku environments. After the build is triggered by the webhook and the
@@ -17,7 +17,7 @@ To be able to deploy to two Heroku applications, we need to add two separate rem
 `production`. This is done here in `before_install` step:
 
     - git remote -v | grep ^staging || heroku git:remote --remote staging --app $STAGING_APP_NAME
-    - git remote -v | grep ^production || heroku git:remote --remote production --app $PRODUCTION_APP_NAME
+    - git remote -v | grep ^production || heroku git:remote --remote production --app $PROD_APP_NAME
 
 Then in `after_success` step, we can check on which branch we are currently and choose the correct
 remote:
@@ -26,13 +26,14 @@ remote:
       [[ $BRANCH = 'production' ]] && REMOTE=production || REMOTE=staging
     - git push -f $REMOTE master
 
-(note that we use `&gt;`, so square brackets don't get interpreted by YAML parser)
+(note that we use `>`, so square brackets don't get interpreted by YAML parser)
 
 Example workflow
 ----------------
 
-This config can be then leveraged in workflow like follows. Assume that the developers work on
-`master` branch:
+This config can be then leveraged in a workflow like following. 
+
+Assume that the developers work on `master` branch:
 
     git checkout master
     git add changes
